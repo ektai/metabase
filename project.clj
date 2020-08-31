@@ -43,12 +43,12 @@
    [org.clojure/core.match "0.3.0"]                                   ; optimized pattern matching library for Clojure
    [org.clojure/core.memoize "1.0.236"]                               ; needed by core.match; has useful FIFO, LRU, etc. caching mechanisms
    [org.clojure/data.csv "0.1.4"]                                     ; CSV parsing / generation
-   [org.clojure/java.classpath "0.3.0"]                               ; examine the Java classpath from Clojure programs
+   [org.clojure/java.classpath "1.0.0"]                               ; examine the Java classpath from Clojure programs
    [org.clojure/java.jdbc "0.7.11"]                                   ; basic JDBC access from Clojure
    [org.clojure/math.combinatorics "0.1.4"]                           ; combinatorics functions
    [org.clojure/math.numeric-tower "0.0.4"]                           ; math functions like `ceil`
    [org.clojure/tools.logging "1.1.0"]                                ; logging framework
-   [org.clojure/tools.namespace "0.2.11"]
+   [org.clojure/tools.namespace "1.0.0"]
    [org.clojure/tools.trace "0.7.10"]                                 ; function tracing
    [amalloy/ring-buffer "1.2.2"
     :exclusions [org.clojure/clojure
@@ -367,8 +367,10 @@
 
    :cloverage
    [:test-common
-    {:dependencies [[cloverage "1.2.0" :exclusions [riddley]]]
-     :plugins      [[lein-cloverage  "1.2.0"]]
+    ;; using Cam's fork of Cloverage until upstream bugfixes are shipped -- once the official Cloverage 1.2.1 release
+    ;; is out we can switch back to that.
+    {:dependencies [[camsaul/cloverage "1.2.1.1" :exclusions [riddley]]]
+     :plugins      [[camsaul/lein-cloverage  "1.2.1.1"]]
      :source-paths ^:replace ["src" "backend/mbql/src"]
      :test-paths   ^:replace ["test" "backend/mbql/test"]
      :cloverage    {:fail-threshold 69
